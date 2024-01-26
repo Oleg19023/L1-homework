@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         .then(res => res.json())
         .then(data => {
             let products = data; // Сейв
+            let filteredProducts = [...products]; // Фильтр
 
             // Вывод
             function displayProducts(products) {
@@ -28,18 +29,29 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
             // Возрастание
             function sortByPriceAsc() {
-                products.sort((a, b) => a.price - b.price);
-                displayProducts(products);
+                filteredProducts.sort((a, b) => a.price - b.price);
+                displayProducts(filteredProducts);
             }
 
             // Убывание
             function sortByPriceDesc() {
-                products.sort((a, b) => b.price - a.price);
-                displayProducts(products);
+                filteredProducts.sort((a, b) => b.price - a.price);
+                displayProducts(filteredProducts);
+            }
+
+            // Поиск
+            function searchProducts(query) {
+                filteredProducts = products.filter(product =>
+                    product.title.toLowerCase().includes(query.toLowerCase()) ||
+                    product.description.toLowerCase().includes(query.toLowerCase())
+                );
+                displayProducts(filteredProducts);
             }
 
             document.getElementById('sortButtonAsc').addEventListener('click', sortByPriceAsc);
             document.getElementById('sortButtonDesc').addEventListener('click', sortByPriceDesc);
+
+            document.getElementById('searchInput').addEventListener('input', (e) => searchProducts(e.target.value));
 
             displayProducts(products);
         })
