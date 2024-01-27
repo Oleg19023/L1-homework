@@ -37,8 +37,12 @@
 <main class="container">
   <h1 class="mb-4">Список товаров</h1>
   <input type="text" id="searchInput" placeholder="Поиск..." class="form-control mb-4">
-  <button id="sortButtonAsc" class="btn btn-primary mb-4">Сортировать по возрастанию цены</button>
-  <button id="sortButtonDesc" class="btn btn-primary mb-4">Сортировать по убыванию цены</button>
+  <div class="mb-4">
+    <input type="radio" id="sortButtonAsc" name="sort" value="asc">
+    <label for="sortButtonAsc">Сортировать по возрастанию цены</label><br>
+    <input type="radio" id="sortButtonDesc" name="sort" value="desc">
+    <label for="sortButtonDesc">Сортировать по убыванию цены</label>
+  </div>
   <div id="productContainer" class="row mt-4">
   </div>
 </main>
